@@ -27,7 +27,7 @@ export default defineManifest({
   },
   content_scripts: [
     {
-      matches: ['http://*/*', 'https://*/*'],
+      matches: ['https://qiita.com/drafts/*/edit'],
       js: ['src/contentScript/index.ts'],
     },
   ],
