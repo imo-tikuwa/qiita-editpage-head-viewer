@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import PrimeVue from 'primevue/config';
+import PrimeVue from 'primevue/config'
 import 'primevue/resources/themes/mira/theme.css'
 import 'primeflex/primeflex.css'
 import 'primeicons/primeicons.css'
