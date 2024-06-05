@@ -30,5 +30,5 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          files: qiita-editpage-head-viewer.zip
+          files: qiita-editpage-head-viewer-${{ github.ref_name }}.zip
           generate_release_notes: true
