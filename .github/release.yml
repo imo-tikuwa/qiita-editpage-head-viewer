@@ -1,0 +1,32 @@
+changelog:
+  categories:
+    - title: 🐛 Bug Fixes
+      labels:
+        - bug
+    - title: 📚 Documentation
+      labels:
+        - documentation
+    - title: 🚫 Duplicates
+      labels:
+        - duplicate
+    - title: 🚀 Enhancements
+      labels:
+        - enhancement
+    - title: 👶 Good First Issues
+      labels:
+        - good first issue
+    - title: 🙋 Help Wanted
+      labels:
+        - help wanted
+    - title: 🚷 Invalid
+      labels:
+        - invalid
+    - title: ❓ Questions
+      labels:
+        - question
+    - title: ⛔ Won't Fix
+      labels:
+        - wontfix
+    - title: Others
+      labels:
+        - "*"
