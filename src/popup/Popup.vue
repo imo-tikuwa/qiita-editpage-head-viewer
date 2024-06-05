@@ -23,23 +23,22 @@ chrome.runtime.onConnect.addListener((port) => {
 })
 
 onMounted(() => {
-
   // 現在アクティブなタブのページURLを表示
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     if (tabs.length > 0) {
-      const activeTab = tabs[0];
+      const activeTab = tabs[0]
       if (activeTab.url) {
-        currentTab.value = activeTab;
+        currentTab.value = activeTab
       } else {
         currentTab.value = null
       }
     }
-  });
+  })
 })
 
 /**
  * URLをアップデート
- * @param anchor 
+ * @param anchor
  */
 const updateUrl = (anchor: string) => {
   // TODO 以下の変換処理は不足あるかも？
@@ -48,11 +47,11 @@ const updateUrl = (anchor: string) => {
     .replace(/\s/g, '-') // 半角スペースを「-」に置き換える
     .replace(/　/g, '') // 全角スペースを取り除く
     .replace(/（|）|\(|\)/g, '') // 「（」「）」「(」「)」を取り除く
-    .replace(/,|\.|。|、/g, ''); // 「,」「.」「。」「、」を取り除く
-  const newUrl = currentTab.value!.url?.split('#')[0] + '#' + transformedAnchor;
-  console.log (newUrl)
+    .replace(/,|\.|。|、/g, '') // 「,」「.」「。」「、」を取り除く
+  const newUrl = currentTab.value!.url?.split('#')[0] + '#' + transformedAnchor
+  console.log(newUrl)
   chrome.tabs.update(currentTab.value!.id!, {
-    url: newUrl
+    url: newUrl,
   })
 }
 </script>
@@ -65,23 +64,15 @@ const updateUrl = (anchor: string) => {
           <h2 class="text-primary text-2xl">Qiita EditPage Head Viewer</h2>
         </div>
         <div>
-          <Button
-            class="p-1 mr-4"
-            severity="help"
-            icon="pi pi-question"
-            size="small"
-            text
-          />
+          <Button class="p-1 mr-4" severity="help" icon="pi pi-question" size="small" text />
         </div>
       </div>
     </template>
 
     <template #subtitle>
       <template v-if="currentTabUrl">
-        <div class="grid mx-3" style="min-width: 400px;width:auto">
-          <div class="col-2 flex align-items-center">
-            URL
-          </div>
+        <div class="grid mx-3" style="min-width: 400px; width: auto">
+          <div class="col-2 flex align-items-center">URL</div>
           <div class="col-10 flex align-items-center">
             <div>
               {{ currentTabUrl }}
@@ -90,22 +81,32 @@ const updateUrl = (anchor: string) => {
         </div>
       </template>
     </template>
-    
+
     <template #content>
       <template v-if="headings && headings.length > 0">
-        <DataTable class="head-list w-full" :value="headings" size="small" :pt="{
-          bodyRow: () => ({
-            style: 'background-color: transparent'
-          }),
-          emptyMessageCell: () => ({
-            style: 'background-color: transparent'
-          })
-        }">
-          <Column header="Link" frozen style="min-width: 50px" :pt="{
-            bodyCell: () => ({
-              class: 'py-0 text-center',
-            })
-          }">
+        <DataTable
+          class="head-list w-full"
+          :value="headings"
+          size="small"
+          :pt="{
+            bodyRow: () => ({
+              style: 'background-color: transparent',
+            }),
+            emptyMessageCell: () => ({
+              style: 'background-color: transparent',
+            }),
+          }"
+        >
+          <Column
+            header="Link"
+            frozen
+            style="min-width: 50px"
+            :pt="{
+              bodyCell: () => ({
+                class: 'py-0 text-center',
+              }),
+            }"
+          >
             <template #body="slotProps">
               <Button
                 class="p-1 w-auto"
@@ -117,11 +118,15 @@ const updateUrl = (anchor: string) => {
               />
             </template>
           </Column>
-          <Column header="Head" style="max-width: 300px" :pt="{
-            bodyCell: () => ({
-              class: 'py-0',
-            })
-          }">
+          <Column
+            header="Head"
+            style="max-width: 300px"
+            :pt="{
+              bodyCell: () => ({
+                class: 'py-0',
+              }),
+            }"
+          >
             <template #body="slotProps">
               <div :class="`level${slotProps.data.level}`">
                 {{ slotProps.data.text }}
